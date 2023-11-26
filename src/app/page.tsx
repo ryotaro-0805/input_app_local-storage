@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useRef, useState } from 'react';
 
 export default function Home() {
@@ -9,10 +10,14 @@ export default function Home() {
 
   useEffect(() => {
     const getArray: any = localStorage.getItem("storagekey");
-    if (getArray.length > 2) {
-      setGetText(JSON.parse(getArray));
-    } else {
+    if (getArray === null) {
       setCurrentStatus('現在ローカルストレージにはデータは保存されていません。');
+    } else {
+      if (getArray.length > 2) {
+        setGetText(JSON.parse(getArray));
+      } else {
+        setCurrentStatus('現在ローカルストレージにはデータは保存されていません。');
+      }
     }
   }, []);
 
@@ -59,7 +64,7 @@ export default function Home() {
                 <hr className='m-auto text-left w-64' />
               </div>
             ))}
-            <button onClick={handleClear} id="myButton" className="bg-pink-500 hover:bg-pink-600 text-white font-bold mx-5 py-1 px-2 rounded transition duration-300">
+            <button onClick={handleClear} id="myButton" className="bg-pink-500 hover:bg-pink-600 text-white font-bold m-5 py-1 px-2 rounded transition duration-300">
               CLEAE
             </button>
           </div>
