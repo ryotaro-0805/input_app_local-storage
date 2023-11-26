@@ -9,7 +9,7 @@ export default function Home() {
   const [registerText, setRegisterText] = useState<any>([]);
 
   useEffect(() => {
-    const getArray: any = localStorage.getItem('storagekey');
+    const getArray: any = localStorage.getItem("storagekey");
     console.log(getArray);
     console.log(getArray.length);
 
@@ -35,13 +35,13 @@ export default function Home() {
   }, [getText]);
 
   useEffect(() => {
-    localStorage.setItem('storagekey', registerText)
+    localStorage.setItem("storagekey", registerText)
   }, [registerText]);
 
   const handleClear: any = () => {
     setGetText([]);
     setRegisterText([]);
-    localStorage.setItem('storagekey', JSON.stringify(registerText));
+    localStorage.setItem("storagekey", JSON.stringify(registerText));
     setCurrentStatus('現在ローカルストレージにはデータは保存されていません。')
   }
 
