@@ -4,15 +4,20 @@ import { useEffect, useRef, useState } from 'react';
 export default function Home() {
   const input_placefolder_text: string = '入力してください';
   const textRef = useRef<any>('');
-  const [getText, setGetText] = useState<any>(['']);
+  const [getText, setGetText] = useState<any>([]);
   const [currentStatus, setCurrentStatus] = useState<string>('ロード中です。');
+  const [registerText, setRegisterText] = useState<any>([]);
 
   useEffect(() => {
-    const getArray = localStorage.getItem('storagekey');
-    if (getArray !== null) {
+    const getArray: any = localStorage.getItem('storagekey');
+    console.log(getArray);
+    console.log(getArray.length);
+
+
+    if (getArray.length > 2) {
       setGetText(JSON.parse(getArray));
     } else {
-      setCurrentStatus('現在ローカルストレージにはデータは保存されていません。')
+      setCurrentStatus('現在ローカルストレージにはデータは保存されていません。');
     }
   }, []);
 
@@ -21,26 +26,23 @@ export default function Home() {
     textRef.current.value.length ? setGetText((e: any) => [...e, textRef.current?.value]) : null;
   }
 
-  // useEffect(() => {
-  //   const dataGeter: any = localStorage.getItem('storagekey');
-  //   setGetText(dataGeter);
-  //   console.log(getText);
-
-  // }, []);
-
-
   useEffect(() => {
     console.log(getText);
+    console.log(getText.length);
+
     textRef.current.value = '';
-    getText ?
-      localStorage.setItem('storagekey', JSON.stringify(getText))
-      : null
+    setRegisterText(JSON.stringify(getText));
   }, [getText]);
 
+  useEffect(() => {
+    localStorage.setItem('storagekey', registerText)
+  }, [registerText]);
 
   const handleClear: any = () => {
-    setGetText('');
-    localStorage.setItem('storagekey', '')
+    setGetText([]);
+    setRegisterText([]);
+    localStorage.setItem('storagekey', JSON.stringify(registerText));
+    setCurrentStatus('現在ローカルストレージにはデータは保存されていません。')
   }
 
   return (
@@ -56,12 +58,12 @@ export default function Home() {
       </form>
 
       <div className='text-center'>
-        {getText ?
+        {getText.length ?
           <div>
             <p>現在ローカルストレージには以下のデーターが保存されています。</p>
             {getText.map((data: any, index: number) => (
-              <div>
-                <p className='m-auto text-left w-64' key={index}>{`${index + 1}. ${data}`}</p>
+              <div key={index}>
+                <p className='m-auto text-left w-64'>{`${index + 1}. ${data}`}</p>
                 <hr className='m-auto text-left w-64' />
               </div>
             ))}
