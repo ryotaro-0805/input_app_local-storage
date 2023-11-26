@@ -10,10 +10,6 @@ export default function Home() {
 
   useEffect(() => {
     const getArray: any = localStorage.getItem("storagekey");
-    console.log(getArray);
-    console.log(getArray.length);
-
-
     if (getArray.length > 2) {
       setGetText(JSON.parse(getArray));
     } else {
@@ -27,9 +23,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    console.log(getText);
-    console.log(getText.length);
-
     textRef.current.value = '';
     setRegisterText(JSON.stringify(getText));
   }, [getText]);
