@@ -103,7 +103,7 @@ export default function Home() {
             {getText.map((data: any, index: number) => (
               <div key={index}>
                 <div className='w-64 flex m-auto'>
-                  <p className='textGetter m-auto text-left w-3/4 overflow-hidden'>{`${index + 1}. ${data}`}</p>
+                  <p className='textGetter mx-auto my-2 text-left w-3/4 overflow-hidden'>{`${index + 1}. ${data}`}</p>
                   <button onClick={handleEdit} className=' bg-green-50 rounded-lg border border-green-500 text-xs w-3/12 justify-end duration-200 hover:bg-green-100'>編集</button>
                   <button onClick={() => handleDelete(index)} className=' bg-pink-50 rounded-lg border border-pink-500 text-xs w-3/12 justify-end duration-200 hover:bg-pink-100 ml-3'>削除</button>
                 </div>
