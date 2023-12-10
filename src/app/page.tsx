@@ -93,13 +93,13 @@ export default function Home() {
         <button type='submit' id="myButton" className="bg-blue-500 hover:bg-blue-600 text-white font-bold mx-5 py-2 px-4 rounded transition duration-300">
           入力
         </button>
-        <button onClick={handleStorageClear} className='bg-yellow-500  hover:bg-yellow-600 text-white font-bold mx-5 py-2 px-4 rounded transition duration-300'>Local Storage Cleare</button>
+        <button onClick={handleStorageClear} className='bg-yellow-500  hover:bg-yellow-600 text-white font-bold m-5 py-2 px-4 rounded transition duration-300'>Local Storage Cleare</button>
       </form>
 
       <div className='text-center'>
         {getText.length ?
           <div>
-            <p>現在ローカルストレージには以下のデーターが保存されています。</p>
+            <p>現在ローカルストレージには<br />以下のデーターが保存されています。</p>
             {getText.map((data: any, index: number) => (
               <div key={index}>
                 <div className='w-64 flex m-auto'>
